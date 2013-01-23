@@ -50,7 +50,8 @@ module ExtractsPath
 
     return pair unless @project
 
-    # Remove project, actions and all other staff from path
+    # Remove relative_url_root,project, actions and all other staff from path
+    input.gsub!(/^#{Gitlab.config.gitlab.relative_url_root}/, "")
     input.gsub!(/^\/#{Regexp.escape(@project.path_with_namespace)}/, "")
     input.gsub!(/^\/(tree|commits|blame|blob|refs)\//, "") # remove actions
     input.gsub!(/\?.*$/, "") # remove stamps suffix
