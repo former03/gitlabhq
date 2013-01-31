@@ -142,10 +142,10 @@ namespace :gitlab do
         return
       end
 
-      recipe_content = `curl https://raw.github.com/gitlabhq/gitlab-recipes/4-1-stable/init.d/gitlab 2>/dev/null`
+      target_version = '4.0'
       script_content = File.read(script_path)
 
-      if recipe_content == script_content
+      if script_content =~ /^# App Version: ([0-9]+(\.[0-9]+)*)$/ and "#{$1}" == target_version
         puts "yes".green
       else
         puts "no".red
