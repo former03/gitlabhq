@@ -5,16 +5,20 @@ module Gitlab
 
     resource :projects do
       # Get a projects list for authenticated user
-      #
+      # Admin users see everything
       # Example Request:
       #   GET /projects
       get do
-        @projects = paginate current_user.authorized_projects
+        if current_user.admin
+          @projects = paginate Project
+        else
+          @projects = paginate current_user.authorized_projects
+        end
         present @projects, with: Entities::Project
       end
 
       # Get a single project
-      #
+      # Admin users see everything
       # Parameters:
       #   id (required) - The ID of a project
       # Example Request:
