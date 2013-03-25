@@ -48,11 +48,15 @@ module Gitlab
       end
 
       #
-      # Discover user by ssh key
+      # Discover user/project by ssh key
       #
       get "/discover" do
         key = Key.find(params[:key_id])
-        present key.user, with: Entities::UserSafe
+          if key.user != nil
+            present key.user, with: Entities::UserSafe
+          elsif key.project != nil
+            present key.project, with: Entities::ProjectSafe
+          end
       end
 
       get "/check" do

@@ -24,6 +24,10 @@ module Gitlab
     class Hook < Grape::Entity
       expose :id, :url, :created_at
     end
+    
+    class ProjectSafe < Grape::Entity
+      expose :name
+    end
 
     class Project < Grape::Entity
       expose :id, :name, :description, :default_branch
