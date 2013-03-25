@@ -22,7 +22,7 @@ class Namespace < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true,
             length: { within: 0..255 },
             format: { with: Gitlab::Regex.name_regex,
-                      message: "only letters, digits, spaces & '_' '-' '.' allowed." }
+                      message: "only letters, digits, spaces & '_' '-' '.' '|' allowed." }
   validates :description, length: { within: 0..255 }
   validates :path, uniqueness: true, presence: true, length: { within: 1..255 },
             format: { with: Gitlab::Regex.path_regex,
