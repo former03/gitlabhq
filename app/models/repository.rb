@@ -15,11 +15,14 @@ class Repository
   attr_accessor :root_ref
 
   def initialize(path_with_namespace, root_ref = 'master')
-    @root_ref = root_ref || "master"
     @path_with_namespace = path_with_namespace
 
     # Init grit repo object
     repo
+    
+    # Set default branch
+    update_root_ref(root_ref)
+        
   end
 
   def raw
@@ -30,6 +33,12 @@ class Repository
     @path_to_repo ||= File.join(Gitlab.config.gitlab_shell.repos_path, "#{path_with_namespace}.git")
   end
 
+  # Updates the default branch in the bare repo
+  def update_root_ref(root_ref)
+    @root_ref = root_ref || "master"
+    @repo.git.fs_write('HEAD',"ref: refs/heads/#{@root_ref}\n")
+  end
+    
   def repo
     @repo ||= Grit::Repo.new(path_to_repo)
   end

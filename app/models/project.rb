@@ -86,7 +86,9 @@ class Project < ActiveRecord::Base
     if: :import?
 
   validate :check_limit, :repo_name
-
+  
+  after_update :update_default_branch
+  
   # Scopes
   scope :without_user, ->(user)  { where("id NOT IN (:ids)", ids: user.authorized_projects.map(&:id) ) }
   scope :not_in_group, ->(group) { where("id NOT IN (:ids)", ids: group.project_ids ) }
@@ -400,4 +402,11 @@ class Project < ActiveRecord::Base
   def protected_branch? branch_name
     protected_branches.map(&:name).include?(branch_name)
   end
+    
+  # Update the default branch in bare repo
+  def update_default_branch
+    repository.update_root_ref(default_branch) if self.default_branch_changed?
+  end
+    
+  
 end
