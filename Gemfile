@@ -187,3 +187,6 @@ end
 group :production do
   gem "gitlab_meta", '5.0'
 end
+
+# Jenkins @former03
+gem 'ci_reporter', '1.8.4', group: :test
