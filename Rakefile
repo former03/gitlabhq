@@ -4,7 +4,9 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-require 'ci/reporter/rake/rspec'     # use this if you're using RSpec
-require 'ci/reporter/rake/spinach'   # use this if you're using Spinach
+if (ENV['RAILS_ENV'] == "test")
+  require 'ci/reporter/rake/rspec'     # use this if you're using RSpec
+  require 'ci/reporter/rake/spinach'   # use this if you're using Spinach
+end
 
 Gitlab::Application.load_tasks
