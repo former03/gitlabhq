@@ -173,6 +173,7 @@ group :test do
   gem 'email_spec'
   gem "webmock"
   gem 'test_after_commit'
+  gem 'ci_reporter'
 end
 
 group :production do
