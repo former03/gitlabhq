@@ -1,4 +1,4 @@
-module Gitlab
+module API
   # Internal access API
   class Internal < Grape::API
     namespace 'internal' do
@@ -25,8 +25,8 @@ module Gitlab
         return false unless project
 
 
-        if key.is_deploy_key
-          project == key.project && git_cmd == 'git-upload-pack'
+        if key.is_a? DeployKey
+          key.projects.include?(project) && git_cmd == 'git-upload-pack'
         else
           user = key.user
 
@@ -62,7 +62,7 @@ module Gitlab
 
       get "/check" do
         {
-          api_version: Gitlab::API.version,
+          api_version: API.version,
           gitlab_version: Gitlab::VERSION,
           gitlab_rev: Gitlab::REVISION,
         }

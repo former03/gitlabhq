@@ -17,11 +17,12 @@ Please send a pull request with a tested solution or a pull request with a faili
 
 ### Issue tracker guidelines
 
-**Search** for similar entries before submitting your own, there's a good chance somebody else had the same issue or idea. Show your support with `:+1:` and/or join the discussion.
+**[Search](https://github.com/gitlabhq/gitlabhq/search?q=&ref=cmdform&type=Issues)** for similar entries before submitting your own, there's a good chance somebody else had the same issue or idea. Show your support with `:+1:` and/or join the discussion.
 
+* Only report issues for supported versions according to the [maintenance policy](MAINTENANCE.md)
 * Summarize your issue in one sentence (what goes wrong, what did you expect to happen)
 * Describe your issue in detail
-* How can we reproduce the issue on the [GitLab Vagrant virtual machine](https://github.com/gitlabhq/gitlab-vagrant-vm) (start with: vagrant destroy && vagrant up && vagrant ssh)
+* How can we reproduce the issue on the [GitLab Vagrant virtual machine](https://github.com/gitlabhq/gitlab-vagrant-vm) (start with: `vagrant destroy && vagrant up && vagrant ssh`)
 * Add the last commit sha1 of the GitLab version you used to replicate the issue
 * Add logs or screen shots when possible
 * Link to the line of code that might be responsible for the problem
@@ -37,15 +38,16 @@ We welcome pull request with improvements to GitLab code and/or documentation. T
 
 1. Fork the project on GitHub
 1. Create a feature branch
-1. Write tests and code
+1. Write [tests](README.md#run-the-tests) and code
 1. If you have multiple commits please combine them into one commit by [squashing them](http://git-scm.com/book/en/Git-Tools-Rewriting-History#Squashing-Commits)
 1. Push the commit to your fork
 1. Submit a pull request
+2. [Search for issues](https://github.com/gitlabhq/gitlabhq/search?q=&ref=cmdform&type=Issues) related to your pull request and mention them in the pull request comments
 
 We will accept pull requests if:
 
 * The code has proper tests and all tests pass
-* It can be merged without problems (if not please use: git rebase master)
+* It can be merged without problems (if not please use: `git rebase master`)
 * It doesn't break any existing functionality
 * It's quality code that conforms to the [Rails style guide](https://github.com/bbatsov/rails-style-guide) and best practices
 * The description includes a motive for your change and the method you used to achieve it
