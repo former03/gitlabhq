@@ -49,15 +49,11 @@ module API
       end
 
       #
-      # Discover user/project by ssh key
+      # Discover user by ssh key
       #
       get "/discover" do
         key = Key.find(params[:key_id])
-          if key.user != nil
-            present key.user, with: Entities::UserSafe
-          elsif key.project != nil
-            present key.project, with: Entities::ProjectSafe
-          end
+        present key.user, with: Entities::UserSafe
       end
 
       get "/check" do

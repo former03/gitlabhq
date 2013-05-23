@@ -52,4 +52,3 @@
   buildUrl: (url) ->
     url = gon.relative_url_root + url if (gon.relative_url_root != "")
     return url.replace(':version', gon.api_version)
-
